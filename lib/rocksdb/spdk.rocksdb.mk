@@ -56,12 +56,16 @@ endif
 SPDK_LIB_LIST = $(ALL_MODULES_LIST) event_bdev
 
 AM_LINK += $(SPDK_LIB_LINKER_ARGS) $(ENV_LINKER_ARGS)
+JNI_LINK += $(SPDK_LIB_LINKER_ARGS) $(ENV_LINKER_ARGS)
 AM_LINK += $(SYS_LIBS)
+JNI_LINK += $(SYS_LIBS)
 
 ifeq ($(CONFIG_UBSAN),y)
 AM_LINK += -fsanitize=undefined
+JNI_LINK += -fsanitize=undefined
 endif
 
 ifeq ($(CONFIG_COVERAGE),y)
 AM_LINK += -fprofile-arcs -ftest-coverage
+JNI_LINK += -fprofile-arcs -ftest-coverage
 endif
